@@ -45,11 +45,17 @@ import hashlib
 # 5. Add an attribute named `amount` of type `float`.
 # Note that you’ll use this new `Record` class as the data type of your `record` attribute in the next section.
 
-
 # @TODO
 # Create a Record Data Class that consists of the `sender`, `receiver`, and
 # `amount` attributes
-# YOUR CODE HERE
+
+@dataclass
+class Record:
+	sender:    str
+	receiver:  str
+	amount:    float
+
+
 
 
 ################################################################################
@@ -66,89 +72,92 @@ import hashlib
 @dataclass
 class Block:
 
-    # @TODO
-    # Rename the `data` attribute to `record`, and set the data type to `Record`
-    data: Any
+	# @TODO
+	# Rename the `data` attribute to `record`, and set the data type to `Record`
+	record: Record
+	# data: Any
 
-    creator_id: int
-    prev_hash: str = "0"
-    timestamp: str = datetime.datetime.utcnow().strftime("%H:%M:%S")
-    nonce: int = 0
+	creator_id: int
+	prev_hash: str = "0"
+	timestamp: str = datetime.datetime.utcnow().strftime("%H:%M:%S")
+	nonce: int = 0
 
-    def hash_block(self):
-        sha = hashlib.sha256()
+	def hash_block(self):
+		sha = hashlib.sha256()
 
-        record = str(self.record).encode()
-        sha.update(record)
+		record = str(self.record).encode()
+		sha.update(record)
 
-        creator_id = str(self.creator_id).encode()
-        sha.update(creator_id)
+		creator_id = str(self.creator_id).encode()
+		sha.update(creator_id)
 
-        timestamp = str(self.timestamp).encode()
-        sha.update(timestamp)
+		timestamp = str(self.timestamp).encode()
+		sha.update(timestamp)
 
-        prev_hash = str(self.prev_hash).encode()
-        sha.update(prev_hash)
+		prev_hash = str(self.prev_hash).encode()
+		sha.update(prev_hash)
 
-        nonce = str(self.nonce).encode()
-        sha.update(nonce)
+		nonce = str(self.nonce).encode()
+		sha.update(nonce)
 
-        return sha.hexdigest()
+		return sha.hexdigest()
 
 
 @dataclass
 class PyChain:
-    chain: List[Block]
-    difficulty: int = 4
+	chain: List[Block]
+	difficulty: int = 4
 
-    def proof_of_work(self, block):
+	def proof_of_work(self, block):
 
-        calculated_hash = block.hash_block()
+		calculated_hash = block.hash_block()
 
-        num_of_zeros = "0" * self.difficulty
+		num_of_zeros = "0" * self.difficulty
 
-        while not calculated_hash.startswith(num_of_zeros):
+		while not calculated_hash.startswith(num_of_zeros):
 
-            block.nonce += 1
+			block.nonce += 1
 
-            calculated_hash = block.hash_block()
+			calculated_hash = block.hash_block()
 
-        print("Wining Hash", calculated_hash)
-        return block
+		print("Wining Hash", calculated_hash)
+		return block
 
-    def add_block(self, candidate_block):
-        block = self.proof_of_work(candidate_block)
-        self.chain += [block]
+	def add_block(self, candidate_block):
+		block = self.proof_of_work(candidate_block)
+		self.chain += [block]
 
-    def is_valid(self):
-        block_hash = self.chain[0].hash_block()
+	def is_valid(self):
+		block_hash = self.chain[0].hash_block()
 
-        for block in self.chain[1:]:
-            if block_hash != block.prev_hash:
-                print("Blockchain is invalid!")
-                return False
+		for block in self.chain[1:]:
+			if block_hash != block.prev_hash:
+				print("Blockchain is invalid!")
+				return False
 
-            block_hash = block.hash_block()
+			block_hash = block.hash_block()
 
-        print("Blockchain is Valid")
-        return True
+		print("Blockchain is Valid")
+		return True
 
 ################################################################################
 # Streamlit Code
 
 # Adds the cache decorator for Streamlit
 
-
 @st.cache(allow_output_mutation=True)
 def setup():
-    print("Initializing Chain")
-    return PyChain([Block("Genesis", 0)])
+	print("Initializing Chain")
+	return PyChain([Block("Genesis", 0)])
 
 
 st.markdown("# PyChain")
 st.markdown("## Store a Transaction Record in the PyChain")
 
 pychain = setup()
+
+
+
 
 ################################################################################
 # Step 3:
@@ -166,36 +175,36 @@ pychain = setup()
 
 # @TODO:
 # Delete the `input_data` variable from the Streamlit interface.
-input_data = st.text_input("Block Data")
+# input_data = st.text_input("Block Data")
 
 # @TODO:
 # Add an input area where you can get a value for `sender` from the user.
-# YOUR CODE HERE
+input_sender = st.text_input("Sender")
 
 # @TODO:
 # Add an input area where you can get a value for `receiver` from the user.
-# YOUR CODE HERE
+input_receiver = st.text_input("Receiver")
 
 # @TODO:
 # Add an input area where you can get a value for `amount` from the user.
-# YOUR CODE HERE
+input_amount = st.text_input("Amount")
 
 if st.button("Add Block"):
-    prev_block = pychain.chain[-1]
-    prev_block_hash = prev_block.hash_block()
+	prev_block = pychain.chain[-1]
+	prev_block_hash = prev_block.hash_block()
 
-    # @TODO
-    # Update `new_block` so that `Block` consists of an attribute named `record`
-    # which is set equal to a `Record` that contains the `sender`, `receiver`,
-    # and `amount` values
-    new_block = Block(
-        data=input_data,
-        creator_id=42,
-        prev_hash=prev_block_hash
-    )
+	# @TODO
+	# Update `new_block` so that `Block` consists of an attribute named `record`
+	# which is set equal to a `Record` that contains the `sender`, `receiver`,
+	# and `amount` values
+	new_block = Block(
+		record=Record(input_sender, input_receiver, input_amount),
+		creator_id=42,
+		prev_hash=prev_block_hash
+	)
 
-    pychain.add_block(new_block)
-    st.balloons()
+	pychain.add_block(new_block)
+	st.balloons()
 
 ################################################################################
 # Streamlit Code (continues)
@@ -210,13 +219,16 @@ pychain.difficulty = difficulty
 
 st.sidebar.write("# Block Inspector")
 selected_block = st.sidebar.selectbox(
-    "Which block would you like to see?", pychain.chain
+	"Which block would you like to see?", pychain.chain
 )
 
 st.sidebar.write(selected_block)
 
 if st.button("Validate Chain"):
-    st.write(pychain.is_valid())
+	st.write(pychain.is_valid())
+
+
+
 
 ################################################################################
 # Step 4:
