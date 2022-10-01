@@ -58,6 +58,13 @@ An example of the application running:
 alt="Blockchain-based Ledger in Streamlit" width="85%" />
 </p>
 
+An example of the ledger after validation:
+<p align="center">
+<img src="https://raw.githubusercontent.com/warp-9000/challenge-18-building-a-blockchain/main/screenshots/Screen%20Shot%202022-10-01%20at%204.02.33%20PM.png" 
+alt="Blockchain-based Ledger in Streamlit" width="85%" />
+</p>
+
+
 ---
 
 ## Contributors
