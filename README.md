@@ -1,6 +1,6 @@
-#  REPO NAME
+#  Building a Blockchain-based Ledger
 
-Repo description
+This challenge builds a blockchain-based ledger system, complete with a user-friendly web interface via Streamlit. The Ledger UI should allow the transfer of money between senders and receivers, and to verify the integrity of the data in the ledger.
 
 ---
 
@@ -8,10 +8,13 @@ Repo description
 
 The stable version of this project can be run on Windows, Mac OS, or Linux as long as the user's 
 environment has the following:
-- python #.#
-- framework
-- names
-- here
+- python 3.7
+- streamlit
+- dataclasses
+- typing
+- datetime
+- pandas
+- hashlib
 
 ---
 
@@ -20,20 +23,19 @@ environment has the following:
 You have a few options to install this application on your computer, two popular options are:
 
 1. Download a ZIP of this repositories files 
-[here](url-to-zip)
-     example: (https://github.com/Warp-9000/uw-fintech-2022-module01-challenge/archive/refs/heads/main.zip).
+[here](https://github.com/warp-9000/challenge-18-building-a-blockchain/archive/refs/heads/main.zip).
 
 2. [Fork this respository](https://docs.github.com/en/get-started/quickstart/fork-a-repo "Fork a Repo - 
 GitHub Docs") to your github account.
 
 <p align="center">
-<img src="https://github.com/Warp-9000/uw-fintech-2022-module01-challenge/blob/main/instructions/github-fork-button-screenshot.png?raw=true" 
+<img src="https://raw.githubusercontent.com/warp-9000/uw-fintech-2022-module01-challenge/main/instructions/github-fork-button-screenshot.png?token=GHSAT0AAAAAABWY5BXWLH4TJNKZ6DJGFA2GYZYYWPQ" 
 alt="Fork UI on GitHub.com"
 width="55%"/>
 </p>
 
 After forking the respository you can use `git clone 
-your-username@domain.com:your-git-username/uw-fintech-2022-module01-challenge.git` 
+your-username@domain.com:your-git-username/challenge-18-building-a-blockchain.git` 
 to download a copy of the forked respository to your computer.
 
 Forking has the added benefit of enabling your to easily keep your copy of the 
@@ -46,14 +48,14 @@ application up-to-date should any changes or improvements be made in the future.
 ***Please note:*** *these usage instructions assume you have setup an environment where
 the python version, libraries, and frameworks listed in [Technologies](#Technologies) are installed.*
 
-1. Navigate to the root folder of your repository.
-2. Run the application by ...
-3. Enter any information requested by the application.
+1. In the terminal, navigate to folder where you've downloaded this code.
+2. In the terminal, run application by using 'streamlit run pychain.py'.
+3. Enter values for the sender, receiver, and amount, and then click the **Add Block** button. Do this several times to store multiple blocks in the ledger.
 
 An example of the application running:
 <p align="center">
-<img src="https://github.com/Warp-9000/uw-fintech-2022-module02-challenge/blob/main/instructions/loan-qualifier-app-usage.gif?raw=true" 
-alt="python app.py in terminal" width="55%" />
+<img src="https://raw.githubusercontent.com/warp-9000/challenge-18-building-a-blockchain/main/screenshots/Screen%20Shot%202022-09-29%20at%206.19.42%20PM.png" 
+alt="Blockchain-based Ledger in Streamlit" width="85%" />
 </p>
 
 ---
@@ -62,13 +64,17 @@ alt="python app.py in terminal" width="55%" />
 
 Thanks!
 
-<a href="https://github.com/Warp-9000/uw-fintech-2022-module01-challenge/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=Warp-9000/uw-fintech-2022-module01-challenge" />
+<a href="https://github.com/warp-9000/challenge-18-building-a-blockchain/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=warp-9000/challenge-18-building-a-blockchain" />
 </a>
+
+<!-- 
 
 ---
 
 ## License
 
 This project is licensed under ... Please see the LICENSE file 
-[here](https://github.com/Warp-9000/uw-fintech-2022/blob/main/Module-02/Challenge/loan_qualifier_app/LICENSE).
+[here](https://github.com/warp-9000/uw-fintech-2022/blob/main/Module-02/Challenge/loan_qualifier_app/LICENSE). 
+
+-->
