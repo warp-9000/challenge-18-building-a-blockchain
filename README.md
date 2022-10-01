@@ -29,7 +29,7 @@ You have a few options to install this application on your computer, two popular
 GitHub Docs") to your github account.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/warp-9000/uw-fintech-2022-module01-challenge/3ea35a2fe28b4a7249c43c37820500a78cdd50f6/instructions/github-fork-button-screenshot.png?token=AZEUJOD6DGIBGA5GB6FYRRDDHDFA6" 
+<img src="https://github.com/warp-9000/uw-fintech-2022-module01-challenge/blob/main/instructions/github-fork-button-screenshot.png?raw=true" 
 alt="Fork UI on GitHub.com"
 width="55%"/>
 </p>
